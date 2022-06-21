@@ -1,0 +1,41 @@
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        Node *slow=head;
+        Node *fast=head;
+        while(fast!=NULL&&fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+            
+        }
+        //find middle element and reverse the link list
+        //
+        Node *r2=slow;
+        Node *prev=NULL,*curr=r2,*next;
+        //trsverse from first and last and cheak
+        while(curr!=NULL)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+            
+        }
+        Node *h2=prev;
+        while(h2!=NULL)
+        {
+            if(h2->data!=head->data)return false;
+            head=head->next;
+            h2=h2->next;
+            
+        }
+        return true;
+    }
+};
+
+
+https://practice.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1#
+
